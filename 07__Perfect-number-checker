@@ -1,1 +1,30 @@
+#include <stdio.h>
 
+int main() {
+    int num, i, sum = 0;
+
+    // Perfect Number = Sum of its proper divisors = number itself
+    // Example: 6 = 1 + 2 + 3
+
+    printf("Enter a number: ");
+    scanf("%d", &num);
+
+    // Check divisors from 1 to num/2
+    // We go till num/2 because no divisor can be greater than num/2 (except num itself)
+    for (i = 1; i <= num / 2; i++) {
+        
+        // if i divides num completely, it is a divisor
+        if (num % i == 0) {
+            sum = sum + i; // add divisor to sum
+        }
+    }
+
+    // Check if sum of divisors is equal to original number
+    if (sum == num && num != 0) {
+        printf("%d is a PERFECT NUMBER\n", num);
+    } else {
+        printf("%d is NOT a perfect number\n", num);
+    }
+
+    return 0;
+}
