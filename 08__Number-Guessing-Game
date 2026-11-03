@@ -1,0 +1,64 @@
+#include <stdio.h>   // For printf() and scanf()
+#include <stdlib.h>  // For rand() and srand()
+#include <time.h>    // For time()
+
+int main() {
+
+    // Declare variables
+    int random, guess;
+    int guessnumber = 0;  // Counts the number of attempts
+
+    // Initialize random number generator using current time
+    srand(time(NULL));
+
+    // Display welcome message
+    printf("===== Number Guessing Game =====\n");
+    printf("\nWelcome to the world of Guessing Numbers!\n");
+
+    // Generate a random number between 1 and 100
+    random = rand() % 100 + 1;
+
+    // Repeat the game until the user guesses correctly
+    do {
+
+        // Ask the user to enter a guess
+        printf("Please enter your guess between (1 - 100): ");
+
+        // Take input from the user
+        if (scanf("%d", &guess) != 1) {
+            printf("Invalid input! Please enter a number.\n");
+            return 1;  // Exit if input is not an integer
+        }
+
+        // Check whether the guess is within the valid range
+        if (guess < 1 || guess > 100) {
+            printf("Please enter a number between 1 and 100.\n");
+            continue;  // Skip the remaining statements and repeat
+        }
+
+        // Increase the attempt counter
+        guessnumber++;
+
+        // Compare the user's guess with the random number
+        if (guess < random) {
+            printf("Guess a larger number.\n");
+        }
+
+        else if (guess > random) {
+            printf("Guess a smaller number.\n");
+        }
+
+        else {
+            // Display success message when the guess is correct
+            printf("Congratulations! You've successfully guessed "
+                   "the correct number in %d attempts.\n", guessnumber);
+        }
+
+    } while (guess != random);  // Continue until the correct guess
+
+    // Display goodbye message
+    printf("Bye Bye, Thanks for playing.\n");
+
+    return 0;  // End the program successfully
+}
+
